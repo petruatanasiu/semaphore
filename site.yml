@@ -1,15 +1,22 @@
 ---
-- name: Install apache server   # name of the playbook
-  hosts: web_servers    # target group defined in the inventory file 
-  become: yes
-  tasks:
-    - name: install apache server   # name of the play
-      yum:
-        name: httpd
-        state: latest
-        #update_cache: yes
-    - name: start and enable autostart of apache server
-      systemd:
-        name: httpd
-        state: started
-        enabled: yes
+#- name: Install apache server   # name of the playbook
+#  hosts: web_servers    # target group defined in the inventory file 
+#  become: yes
+#  tasks:
+#    - name: install apache server   # name of the play
+#      yum:
+#        name: httpd
+#        state: latest
+#        update_cache: yes
+#    - name: start and enable autostart of apache server
+#      systemd:
+#        name: httpd
+#        state: started
+#        enabled: yes
+- name: Display list of files in /var/log
+  hosts: web_servers
+   ansible.builtin.command: ls /var/log
+   register: log_files
+ - name: Output list of log files
+   ansible.builtin.debug:
+     var: log_files.stdout_lines
