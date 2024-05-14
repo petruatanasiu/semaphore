@@ -15,8 +15,8 @@
 #        enabled: yes
 - name: Display list of files in /var/log
   hosts: web_servers
-   shell: ls /var/log
-   register: log_files
- - name: Output list of log files
-   ansible.builtin.debug:
-     var: log_files.stdout_lines
+  become: yes
+  tasks:
+    - name: List dim
+      shell: df -h
+      register: log_files
