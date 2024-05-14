@@ -15,7 +15,7 @@
 #        enabled: yes
 - name: Display list of files in /var/log
   hosts: web_servers
-   ansible.builtin.shell: ls /var/log
+   shell: ls /var/log
    register: log_files
  - name: Output list of log files
    ansible.builtin.debug:
